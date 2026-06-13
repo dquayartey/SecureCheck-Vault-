@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envestorr SecureCheck — Cybersecurity Audit for Freelancers</title>
+    <!-- Tailwind CSS for sleek, instant styling without configuration -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        /* Smooth transitions for active quiz sections */
+        .fade-in { animation: fadeIn 0.4s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans min-h-screen flex flex-col justify-between">
+
+    <!-- Header Navigation -->
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="bg-emerald-500 text-slate-950 font-black p-2 rounded text-xs tracking-wider">ENVESTORR</div>
+                <span class="text-lg font-bold tracking-tight text-white">SecureCheck</span>
+            </div>
+            <span class="text-xs text-slate-400 bg-slate-800 px-2 py-1 rounded border border-slate-700">Ghana Freelance Edition</span>
+        </div>
+    </header>
+
+    <!-- Main Content App Canvas -->
+    <main class="max-w-3xl mx-auto px-4 py-8 flex-grow w-full">
+        
+        <!-- Welcome Screen -->
+        <div id="welcome-screen" class="space-y-6 text-center max-w-2xl mx-auto py-12">
+            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-white leading-tight">
+                Are your freelance revenue channels and client data <span class="text-emerald-400">truly locked down?</span>
+            </h1>
+            <p class="text-slate-400 text-base md:text-lg leading-relaxed">
+                Take this 2-minute independent cybersecurity diagnostic. Instantly discover your vulnerability score against WhatsApp hijacking, Momo social engineering, and client data leaks.
+            </p>
+            <div class="pt-4">
+                <button onclick="startAudit()" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-8 py-4 rounded-xl text-lg transition duration-200 shadow-lg shadow-emerald-500/20 cursor-pointer">
+                    Start Free Security Audit →
+                </button>
+            </div>
+            <p class="text-xs text-slate-500">No software installation required. 100% confidential processing.</p>
+        </div>
+
+        <!-- Interactive Audit Screen -->
+        <div id="audit-screen" class="hidden max-w-xl mx-auto bg-slate-800/50 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-xl fade-in">
+            <!-- Progress Bar -->
+            <div class="w-full bg-slate-700 h-2 rounded-full mb-6 overflow-hidden">
+                <div id="progress-bar" class="bg-emerald-400 h-full w-0 transition-all duration-300"></div>
+            </div>
+            
+            <div class="flex justify-between items-center mb-4">
+                <span id="section-title" class="text-xs font-semibold tracking-wider text-emerald-400 uppercase">Section A</span>
+                <span id="question-counter" class="text-xs text-slate-400 font-mono">Question 1 of 12</span>
+            </div>
+
+            <!-- Dynamic Question Text Placeholder -->
+            <h2 id="question-text" class="text-xl font-medium text-white mb-8 min-h-[4rem] leading-snug">
+                Loading assessment question...
+            </h2>
+
+            <!-- Interface Choices -->
+            <div class="space-y-3">
+                <button onclick="handleAnswer(true)" class="w-full text-left bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-emerald-500/50 px-6 py-4 rounded-xl font-medium text-lg text-slate-200 transition duration-150 flex justify-between items-center cursor-pointer group">
+                    <span>Yes, always / fully secure</span>
+                    <span class="text-slate-500 group-hover:text-emerald-400 font-bold">✓</span>
+                </button>
+                <button onclick="handleAnswer(false)" class="w-full text-left bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-rose-500/50 px-6 py-4 rounded-xl font-medium text-lg text-slate-200 transition duration-150 flex justify-between items-center cursor-pointer group">
+                    <span>No / Not entirely sure</span>
+                    <span class="text-slate-500 group-hover:text-rose-400 font-bold">✗</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Dynamic Results & Paywall Screen -->
+        <div id="results-screen" class="hidden max-w-xl mx-auto space-y-6 fade-in">
+            
+            <!-- Dynamic Risk Header (Injected via JS) -->
+            <div id="risk-header-card" class="rounded-2xl p-6 md:p-8 text-center border">
+                <!-- Content will generate dynamically -->
+            </div>
+
+            <!-- Tailored Offers / Paywall System -->
+            <div id="paywall-section" class="space-y-4">
+                <h3 class="text-sm font-bold tracking-widest text-slate-400 uppercase text-center mt-6">Recommended Immediate Fixes</h3>
+                
+                <div class="grid grid-cols-1 gap-4">
+                    <!-- Option A: GHS 20 -->
+                    <div class="bg-slate-800/70 border border-slate-700 rounded-xl p-5 flex flex-col justify-between hover:border-slate-600 transition">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-lg font-bold text-white">Full Security Action Checklist</h4>
+                                <span class="text-emerald-400 font-mono font-bold text-lg">GHS 20</span>
+                            </div>
+                            <p class="text-sm text-slate-400 leading-relaxed mb-4">
+                                Get an instant, step-by-step PDF detailing exactly how to secure your setup based on your missed answers. Includes direct configurations for securing Ghanaian WhatsApp Business settings and remote setups.
+                            </p>
+                        </div>
+                        <!-- You will replace this link with your Paystack payment page link later -->
+                        <a href="https://paystack.com/pay/your-custom-page-a" target="_blank" class="w-full text-center bg-slate-700 hover:bg-emerald-500 hover:text-slate-950 text-white font-bold py-3 rounded-lg text-sm transition">
+                            Unlock Action Blueprint
+                        </a>
+                    </div>
+
+                    <!-- Option B: GHS 50 -->
+                    <div class="bg-slate-800 border-2 border-emerald-500/30 shadow-lg shadow-emerald-500/5 rounded-xl p-5 flex flex-col justify-between relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-emerald-500 text-slate-950 px-3 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-bl">Popular</div>
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-lg font-bold text-white">Blueprint + 15-Min Live Consult</h4>
+                                <span class="text-emerald-400 font-mono font-bold text-lg">GHS 50</span>
+                            </div>
+                            <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                                Receive the complete action checklist plus an express **15-minute live security screen share** with an expert to audit your critical keys, update settings, and test your backup workflows actively.
+                            </p>
+                        </div>
+                        <!-- You will replace this link with your Paystack payment page link later -->
+                        <a href="https://paystack.com/pay/your-custom-page-b" target="_blank" class="w-full text-center bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3 rounded-lg text-sm transition shadow-md">
+                            Book Live Consultation
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reset Button for Testing -->
+            <div class="text-center pt-4">
+                <button onclick="resetAudit()" class="text-xs text-slate-500 hover:text-slate-400 underline">Restart Security Evaluation</button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 border-t border-slate-800 text-xs text-slate-500">
+        <p>&copy; 2026 Envestorr SecureCheck. All data safely encrypted locally.</p>
+    </footer>
+
+    <!-- Core App Logic Engine -->
+    <script>
+        // The 12 Architecture Questions
+        const questions = [
+            { section: "Section A: Financial & Account Access", text: "Do you use unique, distinct passwords across your primary business email, banking/Momo account, and social media pipelines?" },
+            { section: "Section A: Financial & Account Access", text: "Have you activated Two-Factor Authentication (2FA) via a dedicated app (like Google Authenticator) instead of just basic SMS on your primary email?" },
+            { section: "Section A: Financial & Account Access", text: "If a client initiates payments via international services or escrow platforms, is your receiving engine locked with a multi-device validation flag?" },
+            { section: "Section A: Financial & Account Access", text: "Do you change your primary digital transaction pins or platform passwords immediately if you suspect shoulder-viewing in shared spaces?" },
+            { section: "Section B: Client Data & Operational Security", text: "If your system hardware completely fails or drops right now, do you have automated cloud backups capturing active production code/designs daily?" },
+            { section: "Section B: Client Data & Operational Security", text: "Do you actively inspect sender email domain signatures before downloading attached files or asset briefs sent by brand new clients?" },
+            { section: "Section B: Client Data & Operational Security", text: "Do you strictly avoid logging into professional dashboards or payout hubs via unsecured public coffee shop/hotel networks without an active VPN?" },
+            { section: "Section B: Client Data & Operational Security", text: "When utilizing collaborative client asset frameworks (Drive, Canva, Notion), do you restrict access privileges to specific emails rather than choosing 'Anyone with the link can edit'?" },
+            { section: "Section C: Workspace Communication", text: "Have you configured a secondary security PIN for your active WhatsApp or WhatsApp Business application layout?" },
+            { section: "Section C: Workspace Communication", text: "Do you explicitly call to verify identity if a colleague or client reaches out on text out of nowhere asking for an express 'activation code' or emergency Momo wire?" },
+            { section: "Section C: Workspace Communication", text: "Are your desktop environment and portable device software engines deployed to download stability and operating security patches automatically?" },
+            { section: "Section C: Workspace Communication", text: "Do you possess an offline, physical record of master account fail-safes and secondary single-use recovery sheets stored away from your work hardware?" }
+        ];
+
+        let currentQuestionIndex = 0;
+        let secureAnswersCount = 0;
+
+        function startAudit() {
+            document.getElementById('welcome-screen').classList.add('hidden');
+            document.getElementById('audit-screen').classList.remove('hidden');
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const currentQuestion = questions[currentQuestionIndex];
+            document.getElementById('section-title').innerText = currentQuestion.section;
+            document.getElementById('question-counter').innerText = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
+            document.getElementById('question-text').innerText = currentQuestion.text;
+            
+            // Calculate progress bar percentages
+            const progressPercent = ((currentQuestionIndex) / questions.length) * 100;
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+        }
+
+        function handleAnswer(isSecure) {
+            if (isSecure) secureAnswersCount++;
+            
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('audit-screen').classList.add('hidden');
+            
+            const resultsScreen = document.getElementById('results-screen');
+            const headerCard = document.getElementById('risk-header-card');
+            const paywallSection = document.getElementById('paywall-section');
+            
+            resultsScreen.classList.remove('hidden');
+
+            // Metric Logic Categorization
+            if (secureAnswersCount >= 10) {
+                // LOW RISK
+                headerCard.className = "rounded-2xl p-6 md:p-8 text-center border border-emerald-500 bg-emerald-500/10";
+                headerCard.innerHTML = `
+                    <div class="inline-block bg-emerald-500 text-slate-950 font-black px-3 py-1 rounded-full text-xs uppercase mb-3">Low Vulnerability</div>
+                    <h2 class="text-2xl font-bold text-white mb-2">Excellent Defensive Score: ${secureAnswersCount}/${questions.length}</h2>
+                    <p class="text-sm text-slate-300 leading-relaxed">Your professional boundaries and digital channels show strong protection architecture. You are actively minimizing exposure to local attack vectors.</p>
+                `;
+                paywallSection.classList.add('hidden'); // No paywall needed, maybe show a newsletter form
+            } else if (secureAnswersCount >= 6) {
+                // MEDIUM RISK
+                headerCard.className = "rounded-2xl p-6 md:p-8 text-center border border-amber-500 bg-amber-500/10";
+                headerCard.innerHTML = `
+                    <div class="inline-block bg-amber-500 text-slate-950 font-black px-3 py-1 rounded-full text-xs uppercase mb-3">Moderate Vulnerability</div>
+                    <h2 class="text-2xl font-bold text-white mb-2">Security Gaps Identified: ${secureAnswersCount}/${questions.length}</h2>
+                    <p class="text-sm text-slate-300 leading-relaxed">Your setup has active openings. A target vector against your core communication apps or client links could lock you out of your operations or endanger active invoices.</p>
+                `;
+                paywallSection.classList.remove('hidden');
+            } else {
+                // HIGH RISK
+                headerCard.className = "rounded-2xl p-6 md:p-8 text-center border border-rose-500 bg-rose-500/10";
+                headerCard.innerHTML = `
+                    <div class="inline-block bg-rose-500 text-slate-950 font-black px-3 py-1 rounded-full text-xs uppercase mb-3">Critical Vulnerability</div>
+                    <h2 class="text-2xl font-bold text-white mb-2">High Operational Exposure: ${secureAnswersCount}/${questions.length}</h2>
+                    <p class="text-sm text-slate-300 leading-relaxed">Critical structural flaws discovered. Your workflow access logs, incoming client assets, and payment streams are highly susceptible to loss or third-party interference.</p>
+                `;
+                paywallSection.classList.remove('hidden');
+            }
+        }
+
+        function resetAudit() {
+            currentQuestionIndex = 0;
+            secureAnswersCount = 0;
+            document.getElementById('results-screen').classList.add('hidden');
+            document.getElementById('welcome-screen').classList.remove('hidden');
+        }
+    </script>
+</body>
+  </html>
+
