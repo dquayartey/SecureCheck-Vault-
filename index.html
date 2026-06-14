@@ -327,8 +327,7 @@
             font-size: 14px;
             margin-bottom: 14px;
         }
-        
-        .summary-row span:first-child {
+                .summary-row span:first-child {
             color: var(--text-muted);
             font-size: 12px;
             text-transform: uppercase;
@@ -521,8 +520,7 @@
 
                 <button type="button" class="btn btn-primary" style="margin-top: 20px;" onclick="commitCalendarAppointment()">Confirm & Schedule Consultation</button>
             </div>
-
-            <div id="checkoutSuccessStage" style="display: none;">
+    <div id="checkoutSuccessStage" style="display: none;">
                 <div class="success-state">
                     <div class="success-icon">✓</div>
                     <h2 id="successHeading" style="font-size: 22px; margin-bottom: 12px;">Transaction Confirmed</h2>
@@ -534,7 +532,7 @@
 
         </div>
     </div>
-        <script src="https://js.paystack.co/v1/inline.js"></script>
+<script src="https://js.paystack.co/v1/inline.js"></script>
     <script>
         // BACKEND SCRIPT CONFIGURATION CODES
         const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxu3_Hp0-yneExypvLjgFwDu6SealSfgXInB0ZlX5gVqTDfmj084-IvvG9pnLQvQ6aQ/exec";
@@ -711,7 +709,6 @@
             document.getElementById('paymentModalOverlay').classList.add('active');
             transmitMetricsToGoogleSheetsCloud(false); 
         }
-
         function transmitMetricsToGoogleSheetsCloud(includeFeedback = false) {
             const feedbackText = document.getElementById('userFeedbackInput').value.trim();
             
@@ -755,6 +752,7 @@
             alert("Thank you! Your feedback has been recorded and safely synced.");
             document.getElementById('feedbackPortalBlock').style.opacity = "0.5";
             document.getElementById('submitFeedbackBtn').disabled = true;
+            document.getElementById('submitFeedbackBtn').disabled = true;
             document.getElementById('submitFeedbackBtn').innerText = "Feedback Submitted ✓";
         }
 
@@ -780,6 +778,19 @@
                     ]
                 },
                 callback: function(paymentResponse) {
+                    // ====================================================
+                    // 🚀 BACKEND AUTOMATED UPDATE HOOK DETACHMENT
+                    // ====================================================
+                    fetch(APPS_SCRIPT_URL, {
+                        method: "POST",
+                        mode: "no-cors",
+                        headers: { "Content-Type": "text/plain" },
+                        body: JSON.stringify({
+                            action: "payment_success",
+                            email: userDataProfile.email
+                        })
+                    }).catch(err => console.error("Secondary payment sync error: ", err));
+
                     document.getElementById('checkoutFormStage').style.display = 'none';
 
                     if (assignedGhsFee === 50) {
@@ -856,4 +867,4 @@
     </script>
 </body>
 </html>
-                
+        
