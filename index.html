@@ -756,15 +756,8 @@
                     ]
                 },
                 callback: function(paymentResponse) {
-                    fetch(APPS_SCRIPT_URL, {
-                        method: "POST",
-                        mode: "no-cors",
-                        headers: { "Content-Type": "text/plain" },
-                        body: JSON.stringify({
-                            action: "payment_success",
-                            email: userDataProfile.email
-                        })
-                    }).catch(err => console.error("Secondary payment sync error: ", err));
+                    // 🌟 Paystack Webhooks will handle the spreadsheet update automatically!
+                    // We removed the frontend fetch block to completely eliminate modal freezes.
 
                     document.getElementById('checkoutFormStage').style.display = 'none';
 
